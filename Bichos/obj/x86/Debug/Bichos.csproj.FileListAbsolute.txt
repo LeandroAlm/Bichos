@@ -31,3 +31,5 @@ C:\Users\leand\Documents\Visual Studio 2015\Projects\monogame\GAME1\BICHOS\Bicho
 C:\Users\leand\Documents\Visual Studio 2015\Projects\monogame\GAME1\BICHOS\Bichos\bin\Windows\Debug\Content\Ground_Sand.png
 C:\Users\leand\Documents\Visual Studio 2015\Projects\monogame\GAME1\BICHOS\Bichos\bin\Windows\Debug\Content\inimigo.png
 C:\Users\leand\Documents\Visual Studio 2015\Projects\monogame\GAME1\BICHOS\Bichos\bin\Windows\Debug\Content\level2.sok
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\obj\x86\Debug\Bichos.exe
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\obj\x86\Debug\Bichos.pdb
