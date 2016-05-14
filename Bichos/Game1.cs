@@ -16,6 +16,7 @@ namespace Bichos
         SpriteBatch spriteBatch;
 
         CJ cj;
+        Models models;
         Vector2 exit;
         Combate combate = new Combate();
 
@@ -26,9 +27,7 @@ namespace Bichos
         int width, height;
 
         int level = 2;
-
-        bool msgon = false, inifala = false;
-
+        
         Texture2D wall, box, pixel, inimigo;
         
         SpriteFont ComicSans;
@@ -54,6 +53,9 @@ namespace Bichos
         /// </summary>
         protected override void LoadContent()
         {
+            models = new Models();
+
+            models.CarregaModels(Content);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -78,8 +80,6 @@ namespace Bichos
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
 
             Vector2 movement = Vector2.Zero;
             KeyboardState keys = Keyboard.GetState();
@@ -88,45 +88,30 @@ namespace Bichos
 
                 if (!cj.isMoving())
             {
-                if (keys.IsKeyDown(Keys.Down))
+                if (keys.IsKeyDown(Keys.Down) && cj.Position().Y != height-1)
 
                     movement = Vector2.UnitY;
 
 
-                else if (keys.IsKeyDown(Keys.Up))
+                else if (keys.IsKeyDown(Keys.Up) && cj.Position().Y != 0)
 
                     movement = -Vector2.UnitY;
 
 
-                else if (keys.IsKeyDown(Keys.Left))
+                else if (keys.IsKeyDown(Keys.Left) && cj.Position().X != 0)
 
                     movement = -Vector2.UnitX;
 
 
-                else if (keys.IsKeyDown(Keys.Right))
+                else if (keys.IsKeyDown(Keys.Right) && cj.Position().X != width - 1)
 
                     movement = Vector2.UnitX;
 
 
                 if (keys.IsKeyDown(Keys.E))
                 {
-                    if (isCrate(cj.Position() + movement))
-                        msgon = true;
-                    if ((cj.Position() + movement) == positionIni())
-                    {
-                        inifala = true;
-                        if (keys.IsKeyDown(Keys.Enter))
-                        {
-                            inifala = false;
-                            combate.inicombate();
-                        }
-                    }
+                    IsLevel(cj.Position() + movement);
 
-
-                }
-                if (keys.IsKeyDown(Keys.Enter))
-                {
-                    msgon = false;
 
                 }
 
@@ -138,7 +123,7 @@ namespace Bichos
             
             if (movement != Vector2.Zero)
             {
-                if (!isCrate(cj.Position() + movement) && !isWall(cj.Position() + movement) && ((cj.Position() + movement != positionIni())))
+                if (Nobejetos(cj.Position() + movement))
                     cj.Move(movement);
             }
             cj.Update(gameTime);
@@ -147,6 +132,19 @@ namespace Bichos
             {
                 level = 1;
                 loadLevel();
+
+                for (int x = 0; x < width; x++)
+                {
+                    for (int y = 0; y < height; y++)
+                    {
+                        if (board[x, y] == '2')
+                        {
+                            cj.position = new Vector2(x, y+1);
+                        }
+                    }
+                }
+
+                
             }
 
             base.Update(gameTime);
@@ -169,8 +167,8 @@ namespace Bichos
             }
 
 
-                    // desenhar objetos
-                    for (int x = 0; x < width; x++)
+            // desenhar objetos
+            for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
@@ -182,6 +180,27 @@ namespace Bichos
                         case 'x':
                             spriteBatch.Draw(inimigo, new Vector2(x * size, y * size), Color.White);
                             break;
+                        case 'c':
+                            spriteBatch.Draw(models.cama, new Vector2(x * size, y * size), Color.White);
+                            break;
+                        case 'l':
+                            spriteBatch.Draw(models.livros, new Vector2(x * size, y * size), Color.White);
+                            break;
+                        case '2':
+                            spriteBatch.Draw(models.casa, new Vector2(x * size, y * size), Color.White);
+                            break;
+                        case '3':
+                            spriteBatch.Draw(models.hosp, new Vector2(x * size, y * size), Color.White);
+                            break;
+                        case 'm':
+                            spriteBatch.Draw(models.mesa, new Vector2(x * size, y * size), Color.White);
+                            break;
+                        case 'p':
+                            spriteBatch.Draw(models.pc, new Vector2(x * size, y * size), Color.White);
+                            break;
+                        case 's':
+                            spriteBatch.Draw(models.sofa, new Vector2(x * size, y * size), Color.White);
+                            break;
                         default:
                             break;
                     }
@@ -189,11 +208,6 @@ namespace Bichos
             }
             cj.Draw(spriteBatch);
             
-            if (msgon)
-                spriteBatch.DrawString(ComicSans, "UNS TRABALHAM OUTROS VAO A NET", new Vector2(128, 192), Color.Black);
-            if (inifala)
-                spriteBatch.DrawString(ComicSans, "Quer combater?", new Vector2(128, 192), Color.Black);
-
 
             spriteBatch.End();
             base.Draw(gameTime);
@@ -223,7 +237,7 @@ namespace Bichos
             {
                 for (int y = 0; y < height; y++)
                 {
-                    if (board[x, y] == '*')
+                    if (board[x, y] == '1')
                     {
                         board[x, y] = ' ';
                         return new Vector2(x, y);
@@ -249,32 +263,37 @@ namespace Bichos
             return Vector2.Zero;
         }
 
-        Vector2 positionIni()
+
+        bool Nobejetos(Vector2 pos)
+        {
+            if ((board[(int)pos.X, (int)pos.Y] == 'p') || (board[(int)pos.X, (int)pos.Y] == 'l') || (board[(int)pos.X, (int)pos.Y] == 's') || (board[(int)pos.X, (int)pos.Y] == ' '))
+                return true;
+            else return false;
+        }
+
+        void IsLevel(Vector2 vetor)
         {
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
-                    if (board[x, y] == 'x')
+                    if (new Vector2 (x, y) == vetor)
                     {
-                        return new Vector2(x, y);
+                        if (board[x, y] == '1')
+                        {
+                            level = 1;
+                            loadLevel();
+                        }
+                        else if (board[x, y] == '2')
+                        {
+                            level = 2;
+                            loadLevel();
+                        }
                     }
                 }
             }
-            return Vector2.Zero;
         }
-
-
-        bool isCrate(Vector2 pos)
-        {
-            return board[(int)pos.X, (int)pos.Y] == '$';
-        }
-
-        bool isWall(Vector2 coord)
-        {
-            return board[(int)coord.X, (int)coord.Y] == '#';
-
-        }
+        
 
         void loadLevel()
         {

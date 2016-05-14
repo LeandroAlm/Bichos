@@ -31,3 +31,44 @@ C:\Users\leand\Documents\Visual Studio 2015\Projects\monogame\GAME1\BICHOS\Bicho
 C:\Users\leand\Documents\Visual Studio 2015\Projects\monogame\GAME1\BICHOS\Bichos\bin\Windows\Debug\Content\Ground_Sand.png
 C:\Users\leand\Documents\Visual Studio 2015\Projects\monogame\GAME1\BICHOS\Bichos\bin\Windows\Debug\Content\inimigo.png
 C:\Users\leand\Documents\Visual Studio 2015\Projects\monogame\GAME1\BICHOS\Bichos\bin\Windows\Debug\Content\level2.sok
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\obj\x86\Debug\Bichos.exe
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\obj\x86\Debug\Bichos.pdb
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\cama.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\CJ.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\Box.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\Ground_Sand.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\inimigo.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\ComicSansMS_20.xnb
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\level1.sok
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\level2.sok
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Bichos.exe
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Bichos.pdb
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.dll
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\MonoGame.Framework.xml
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.xml
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\obj\x86\Debug\Bichos.csprojResolveAssemblyReference.cache
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\parteleira.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\casa.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\carpete.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\mesa.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\CrateDark_Gray.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\pc.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\sofa.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\hospital.png
