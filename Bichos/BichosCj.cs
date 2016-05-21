@@ -9,9 +9,24 @@ namespace Bichos
     {
         Dictionary<string, Bicho> bichos = new Dictionary<string, Bicho>();
 
-        public void adicionaBA()
+        public void adicionaErva()
         {
-            bichos.Add("A", new Bicho(10, 1, 5, 5, "A"));
+            bichos.Add("Rosaceae", new Bicho(10, 1, 5, 4, "Rosaceae"));
+        }
+
+        public void adicionaAgua()
+        {
+            bichos.Add("Fizz", new Bicho(10, 1, 6, 5, "Fizz"));
+        }
+
+        public void adicionaFogo()
+        {
+            bichos.Add("Drake", new Bicho(10, 1, 7, 4, "Drake"));
+        }
+
+        public void adicionaPedra()
+        {
+            bichos.Add("Basaltes", new Bicho(12, 1, 4, 8, "Basaltes"));
         }
 
         public void MudaVida(string name, int vida)

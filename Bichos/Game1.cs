@@ -16,8 +16,10 @@ namespace Bichos
         SpriteBatch spriteBatch;
 
         CJ cj;
+        Falas fala;
         Models models;
         Vector2 exit;
+        
         Combate combate = new Combate();
 
         char[,] board;
@@ -27,8 +29,12 @@ namespace Bichos
         int width, height;
 
         int level = 2;
-        
-        Texture2D wall, box, pixel, inimigo;
+
+        public int contador = 0;
+
+        public bool prep = false, EmCombate = false;
+
+        Texture2D wall, pixel, inimigo;
         
         SpriteFont ComicSans;
         
@@ -61,8 +67,6 @@ namespace Bichos
 
             wall = Content.Load<Texture2D>("CrateDark_Gray");
 
-            box = Content.Load<Texture2D>("Box");
-
             inimigo = Content.Load<Texture2D>("inimigo");
 
             pixel = Content.Load<Texture2D>("Ground_Sand");
@@ -80,13 +84,13 @@ namespace Bichos
 
         protected override void Update(GameTime gameTime)
         {
-
             Vector2 movement = Vector2.Zero;
+
             KeyboardState keys = Keyboard.GetState();
 
             
 
-                if (!cj.isMoving())
+            if (!cj.isMoving() && EmCombate == false)
             {
                 if (keys.IsKeyDown(Keys.Down) && cj.Position().Y != height-1)
 
@@ -111,16 +115,33 @@ namespace Bichos
                 if (keys.IsKeyDown(Keys.E))
                 {
                     IsLevel(cj.Position() + movement);
+                    Vector2 next = cj.Position() + movement;
 
+                    if (board[(int)next.X, (int)next.Y] == 'x' )
+                    {
+                        EmCombate = true;
+                    }
+                }
+                
+            }
 
+            if (prep == true)
+            {
+                if (!cj.isMoving() && contador < 2)
+                {
+                    movement = -Vector2.UnitX;
+                    cj.Move(movement);
+                    contador++;
+                }
+                else if (!cj.isMoving() && contador == 2)
+                {
+                    movement = Vector2.UnitX;
+                    cj.Move(movement);
+                    prep = false;
                 }
 
             }
 
-            if (keys.IsKeyDown(Keys.R))
-                loadLevel();
-            
-            
             if (movement != Vector2.Zero)
             {
                 if (Nobejetos(cj.Position() + movement))
@@ -130,23 +151,18 @@ namespace Bichos
 
             if (cj.Position() == exit)
             {
+                int oldLevel = level;
                 level = 1;
                 loadLevel();
-
                 for (int x = 0; x < width; x++)
                 {
                     for (int y = 0; y < height; y++)
                     {
-                        if (board[x, y] == '2')
-                        {
-                            cj.position = new Vector2(x, y+1);
-                        }
+                        if (board[x, y] == '0' + oldLevel)
+                            cj.position = new Vector2(x, y + 1);
                     }
                 }
-
-                
             }
-
             base.Update(gameTime);
         }
 
@@ -155,7 +171,7 @@ namespace Bichos
         {
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
-            
+            fala = new Falas();
 
             // pintar chao
             for (int x = 0; x < width; x++)
@@ -181,10 +197,7 @@ namespace Bichos
                             spriteBatch.Draw(inimigo, new Vector2(x * size, y * size), Color.White);
                             break;
                         case 'c':
-                            spriteBatch.Draw(models.cama, new Vector2(x * size, y * size), Color.White);
-                            break;
-                        case 'l':
-                            spriteBatch.Draw(models.livros, new Vector2(x * size, y * size), Color.White);
+                            spriteBatch.Draw(models.casaInt, new Vector2(x * size, y * size), Color.White);
                             break;
                         case '2':
                             spriteBatch.Draw(models.casa, new Vector2(x * size, y * size), Color.White);
@@ -192,14 +205,8 @@ namespace Bichos
                         case '3':
                             spriteBatch.Draw(models.hosp, new Vector2(x * size, y * size), Color.White);
                             break;
-                        case 'm':
-                            spriteBatch.Draw(models.mesa, new Vector2(x * size, y * size), Color.White);
-                            break;
-                        case 'p':
-                            spriteBatch.Draw(models.pc, new Vector2(x * size, y * size), Color.White);
-                            break;
-                        case 's':
-                            spriteBatch.Draw(models.sofa, new Vector2(x * size, y * size), Color.White);
+                        case 'h':
+                            spriteBatch.Draw(models.hospital, new Vector2(x * size, y * size), Color.White);
                             break;
                         default:
                             break;
@@ -207,8 +214,12 @@ namespace Bichos
                 }
             }
             cj.Draw(spriteBatch);
-            
 
+
+            if (EmCombate == true)
+            {
+                fala.Combate(spriteBatch, ComicSans, height);
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -266,9 +277,9 @@ namespace Bichos
 
         bool Nobejetos(Vector2 pos)
         {
-            if ((board[(int)pos.X, (int)pos.Y] == 'p') || (board[(int)pos.X, (int)pos.Y] == 'l') || (board[(int)pos.X, (int)pos.Y] == 's') || (board[(int)pos.X, (int)pos.Y] == ' '))
-                return true;
-            else return false;
+            if ((board[(int)pos.X, (int)pos.Y] == '#') || (board[(int)pos.X, (int)pos.Y] == '-') || (board[(int)pos.X, (int)pos.Y] == '2') || (board[(int)pos.X, (int)pos.Y] == '3') || (board[(int)pos.X, (int)pos.Y] == 'x'))
+                return false;
+            else return true;
         }
 
         void IsLevel(Vector2 vetor)
@@ -289,6 +300,11 @@ namespace Bichos
                             level = 2;
                             loadLevel();
                         }
+                        else if (board[x, y] == '3')
+                        {
+                            level = 3;
+                            loadLevel();
+                        }
                     }
                 }
             }
@@ -301,7 +317,7 @@ namespace Bichos
             width = board.GetLength(0);
             height = board.GetLength(1);
             cj = new CJ(Content, positionCj());
-            graphics.PreferredBackBufferHeight = height * size + 30;
+            graphics.PreferredBackBufferHeight = height * size + 80;
             graphics.PreferredBackBufferWidth = width * size;
             graphics.ApplyChanges();
             exit = OutHome();

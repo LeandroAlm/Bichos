@@ -10,19 +10,15 @@ namespace Bichos
 {
     class Models
     {
-        public Texture2D cama, livros, casa, tapete, mesa, pc, sofa, hosp;
+        public Texture2D casaInt, casa, hosp, hospital;
 
 
         public void CarregaModels(ContentManager Content)
         {
             hosp = Content.Load<Texture2D>("hospital");
+            hospital = Content.Load<Texture2D>("hosp");
             casa = Content.Load<Texture2D>("casa");
-            sofa = Content.Load<Texture2D>("sofa");
-            pc = Content.Load<Texture2D>("pc");
-            cama = Content.Load<Texture2D>("cama");
-            mesa = Content.Load<Texture2D>("mesa");
-            livros = Content.Load<Texture2D>("parteleira");
-            tapete = Content.Load<Texture2D>("carpete");
+            casaInt = Content.Load<Texture2D>("casaInt");
         }
 
 

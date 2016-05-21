@@ -100,11 +100,7 @@ namespace Bichos
         {
             return position;
         }
-
-        public float V()
-        {
-            return v;
-        }
+        
     }
 }
 

@@ -33,9 +33,7 @@ C:\Users\leand\Documents\Visual Studio 2015\Projects\monogame\GAME1\BICHOS\Bicho
 C:\Users\leand\Documents\Visual Studio 2015\Projects\monogame\GAME1\BICHOS\Bichos\bin\Windows\Debug\Content\level2.sok
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\obj\x86\Debug\Bichos.exe
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\obj\x86\Debug\Bichos.pdb
-C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\cama.png
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\CJ.png
-C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\Box.png
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\Ground_Sand.png
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\inimigo.png
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\ComicSansMS_20.xnb
@@ -64,11 +62,9 @@ C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.XInput.x
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\obj\x86\Debug\Bichos.csprojResolveAssemblyReference.cache
-C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\parteleira.png
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\casa.png
-C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\carpete.png
-C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\mesa.png
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\CrateDark_Gray.png
-C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\pc.png
-C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\sofa.png
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\hospital.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\level3.sok
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\casaInt.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\hosp.png
