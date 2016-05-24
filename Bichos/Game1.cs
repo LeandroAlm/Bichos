@@ -32,7 +32,7 @@ namespace Bichos
 
         public int contador = 0;
 
-        public bool prep = false, EmCombate = false;
+        public bool prep = false, EmCombate = false, inicio = true;
 
         Texture2D wall, pixel, inimigo;
         
@@ -59,6 +59,7 @@ namespace Bichos
         /// </summary>
         protected override void LoadContent()
         {
+            fala = new Falas(Content, this);
             models = new Models();
 
             models.CarregaModels(Content);
@@ -79,7 +80,7 @@ namespace Bichos
 
         protected override void UnloadContent()
         {
-
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -88,9 +89,9 @@ namespace Bichos
 
             KeyboardState keys = Keyboard.GetState();
 
-            
 
-            if (!cj.isMoving() && EmCombate == false)
+
+            if (!cj.isMoving() && !EmCombate && !inicio)
             {
                 if (keys.IsKeyDown(Keys.Down) && cj.Position().Y != height-1)
 
@@ -125,6 +126,8 @@ namespace Bichos
                 
             }
 
+
+            // PREPARA PARA LUTAR
             if (prep == true)
             {
                 if (!cj.isMoving() && contador < 2)
@@ -149,6 +152,8 @@ namespace Bichos
             }
             cj.Update(gameTime);
 
+
+            // sair de idificios para o MAPA
             if (cj.Position() == exit)
             {
                 int oldLevel = level;
@@ -171,7 +176,13 @@ namespace Bichos
         {
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
-            fala = new Falas();
+
+
+            if (inicio == true)
+            {
+                fala.Inicio(spriteBatch, ComicSans, height);
+
+            }
 
             // pintar chao
             for (int x = 0; x < width; x++)
@@ -216,10 +227,11 @@ namespace Bichos
             cj.Draw(spriteBatch);
 
 
-            if (EmCombate == true)
+            if (EmCombate)
             {
                 fala.Combate(spriteBatch, ComicSans, height);
             }
+
             spriteBatch.End();
             base.Draw(gameTime);
         }

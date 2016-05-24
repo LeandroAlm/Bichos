@@ -7,7 +7,7 @@ namespace Bichos
 {
     class BichosCj
     {
-        Dictionary<string, Bicho> bichos = new Dictionary<string, Bicho>();
+        public Dictionary<string, Bicho> bichos = new Dictionary<string, Bicho>();
 
         public void adicionaErva()
         {
@@ -36,5 +36,12 @@ namespace Bichos
                 bichos[name].gereVida(vida);
             }
         }
+
+        //public string DizNome()
+        //{
+        //    string nome = "";
+        //    nome = bicho;
+        //    return nome;
+        //}
     }
 }

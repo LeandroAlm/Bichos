@@ -20,11 +20,5 @@ namespace Bichos
             casa = Content.Load<Texture2D>("casa");
             casaInt = Content.Load<Texture2D>("casaInt");
         }
-
-
-        public void Draw(SpriteBatch spriteBatch, Texture2D textura, Vector2 position)
-        {
-            spriteBatch.Draw(textura, position: position, color: Color.White);
-        }
     }
 }
