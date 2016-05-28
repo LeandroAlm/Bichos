@@ -27,6 +27,7 @@ namespace Bichos
         public void Combate (SpriteBatch spriteBatch, SpriteFont ComicSans, int height)
         {
             KeyboardState keys = Keyboard.GetState();
+            string atacante = "";
 
             if (cont == 1)
             {
@@ -41,7 +42,67 @@ namespace Bichos
             }
             else if (cont == 2)
             {
-                spriteBatch.DrawString(ComicSans, "Escolha o seu Bicho:", new Vector2(10, height * 64 + 3), Color.Black);
+                int a = 1;
+                foreach (var bicho in BichosDoCj.bichos)
+                {
+                    spriteBatch.DrawString(ComicSans, "Escolha o seu Bicho:", new Vector2(10, height * 64 + 3), Color.Black);
+                    if (a == 1)
+                        spriteBatch.DrawString(ComicSans, a + " - " + bicho.Key, new Vector2(0 + (10), height * 64 + 25), Color.Black);
+                    if (a == 2)
+                        spriteBatch.DrawString(ComicSans, a + " - " + bicho.Key, new Vector2(0 + (110), height * 64 + 25), Color.Black);
+                    if (a == 3)
+                        spriteBatch.DrawString(ComicSans, a + " - " + bicho.Key, new Vector2(0 + (240), height * 64 + 25), Color.Black);
+                    if (a == 4)
+                        spriteBatch.DrawString(ComicSans, a + " - " + bicho.Key, new Vector2(0 + (360), height * 64 + 25), Color.Black);
+                    a ++;
+                }
+                if (keys.IsKeyDown(Keys.NumPad1))
+                {
+                    // defenir o bicho??
+                    
+                    //desenhar o bicho
+                    
+                }
+                if (a>=2 && keys.IsKeyDown(Keys.NumPad2))
+                {
+                    
+                }
+                cont++;
+            }
+            else if (cont == 3)
+            {
+                spriteBatch.DrawString(ComicSans, "O que pretende fazer?", new Vector2(10, height * 64 + 3), Color.Black);
+                spriteBatch.DrawString(ComicSans, "1-Ataque basico", new Vector2(0 + (10), height * 64 + 25), Color.Black);
+                if (BichosDoCj.bichos[atacante].PoderEsp() > 0)
+                    spriteBatch.DrawString(ComicSans, "2-Especial", new Vector2(0 + (110), height * 64 + 25), Color.Black);
+                spriteBatch.DrawString(ComicSans, "3-Defender", new Vector2(0 + (240), height * 64 + 25), Color.Black);
+                spriteBatch.DrawString(ComicSans, "4-desistir", new Vector2(0 + (360), height * 64 + 25), Color.Black);
+
+                if (keys.IsKeyDown(Keys.NumPad1))
+                {
+                    // atacar basicamente, descontar a vida do def
+
+
+                }
+                else if (keys.IsKeyDown(Keys.NumPad2) && BichosDoCj.bichos[atacante].PoderEsp() > 0)
+                {
+                    // atacar especial, descontar o ataque + level
+
+
+                }
+                else if (keys.IsKeyDown(Keys.NumPad3))
+                {
+                    // defender, ganha defesa = level
+
+
+                }
+                else if (keys.IsKeyDown(Keys.NumPad4))
+                {
+                    // desiste da partida
+                    game.EmCombate = false;
+
+                }
+
             }
             
         }

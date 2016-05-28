@@ -11,22 +11,22 @@ namespace Bichos
 
         public void adicionaErva()
         {
-            bichos.Add("Rosaceae", new Bicho(10, 1, 5, 4, "Rosaceae"));
+            bichos.Add("Rosaceae", new Bicho(10, 1, 5, 4, 1, "Rosaceae"));
         }
 
         public void adicionaAgua()
         {
-            bichos.Add("Fizz", new Bicho(10, 1, 6, 5, "Fizz"));
+            bichos.Add("Fizz", new Bicho(10, 1, 6, 5, 1, "Fizz"));
         }
 
         public void adicionaFogo()
         {
-            bichos.Add("Drake", new Bicho(10, 1, 7, 4, "Drake"));
+            bichos.Add("Drake", new Bicho(10, 1, 7, 4, 1, "Drake"));
         }
 
         public void adicionaPedra()
         {
-            bichos.Add("Basaltes", new Bicho(12, 1, 4, 8, "Basaltes"));
+            bichos.Add("Basaltes", new Bicho(12, 1, 4, 8, 1, "Basaltes"));
         }
 
         public void MudaVida(string name, int vida)

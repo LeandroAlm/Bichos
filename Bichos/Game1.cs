@@ -34,7 +34,7 @@ namespace Bichos
 
         public bool prep = false, EmCombate = false, inicio = true;
 
-        Texture2D wall, pixel, inimigo;
+        Texture2D wall, pixel, inimigo1;
         
         SpriteFont ComicSans;
         
@@ -68,7 +68,7 @@ namespace Bichos
 
             wall = Content.Load<Texture2D>("CrateDark_Gray");
 
-            inimigo = Content.Load<Texture2D>("inimigo");
+            inimigo1 = Content.Load<Texture2D>("inimigo");
 
             pixel = Content.Load<Texture2D>("Ground_Sand");
 
@@ -205,7 +205,7 @@ namespace Bichos
                             spriteBatch.Draw(wall, new Vector2(x * size, y * size), Color.White);
                             break;
                         case 'x':
-                            spriteBatch.Draw(inimigo, new Vector2(x * size, y * size), Color.White);
+                            spriteBatch.Draw(inimigo1, new Vector2(x * size, y * size), Color.White);
                             break;
                         case 'c':
                             spriteBatch.Draw(models.casaInt, new Vector2(x * size, y * size), Color.White);
@@ -229,6 +229,7 @@ namespace Bichos
 
             if (EmCombate)
             {
+                //enviar o oponente, o caracter X pertence ao De agua
                 fala.Combate(spriteBatch, ComicSans, height);
             }
 
