@@ -30,5 +30,10 @@ namespace Bichos
             return hardAta;
         }
 
+        public int VidaAtual()
+        {
+            return heal;
+        }
+
     }
 }

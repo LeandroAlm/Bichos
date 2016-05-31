@@ -59,24 +59,28 @@ namespace Bichos
                 if (keys.IsKeyDown(Keys.NumPad1))
                 {
                     // defenir o bicho??
-                    
+
                     //desenhar o bicho
-                    
+                    cont++;
                 }
                 if (a>=2 && keys.IsKeyDown(Keys.NumPad2))
                 {
-                    
+
+                    cont++;
                 }
-                cont++;
+                
             }
+
+            // colocar no ponta direita o health do bicho ->> hp: BichosDoCj.bichos[atacante].VidaAtual()
+
             else if (cont == 3)
             {
                 spriteBatch.DrawString(ComicSans, "O que pretende fazer?", new Vector2(10, height * 64 + 3), Color.Black);
                 spriteBatch.DrawString(ComicSans, "1-Ataque basico", new Vector2(0 + (10), height * 64 + 25), Color.Black);
-                if (BichosDoCj.bichos[atacante].PoderEsp() > 0)
-                    spriteBatch.DrawString(ComicSans, "2-Especial", new Vector2(0 + (110), height * 64 + 25), Color.Black);
-                spriteBatch.DrawString(ComicSans, "3-Defender", new Vector2(0 + (240), height * 64 + 25), Color.Black);
-                spriteBatch.DrawString(ComicSans, "4-desistir", new Vector2(0 + (360), height * 64 + 25), Color.Black);
+                //if (BichosDoCj.bichos[atacante].PoderEsp() > 0)
+                    spriteBatch.DrawString(ComicSans, "2-Especial", new Vector2(0 + (250), height * 64 + 25), Color.Black);
+                spriteBatch.DrawString(ComicSans, "3-Defender", new Vector2(0 + (400), height * 64 + 25), Color.Black);
+                spriteBatch.DrawString(ComicSans, "4-desistir", new Vector2(0 + (600), height * 64 + 25), Color.Black);
 
                 if (keys.IsKeyDown(Keys.NumPad1))
                 {
