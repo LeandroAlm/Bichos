@@ -20,14 +20,55 @@ namespace Bichos
             hardAta = especial;
         }
 
+        public void ReporAdve()
+        {
+            heal = 10;
+        }
+        
+
+        public void GereLevel()
+        {
+            level++;
+            ata++;
+        }
+
+        public void gereSuper()
+        {
+            hardAta--;
+        }
+
         public void gereVida(int dano)
         {
-            heal -= dano;
+            heal = heal-(dano- def);
         }
 
         public int PoderEsp()
         {
             return hardAta;
+        }
+
+        public int VidaAtual()
+        {
+            return heal;
+        }
+
+        public int LevelAtual()
+        {
+            return level;
+        }
+
+        public int ValorAtaque()
+        {
+            return ata;
+        }
+
+        public void VidaRest(string name, int nivel)
+        {
+            if (name == "Basaltes") heal = 10 + nivel;
+            else heal = 9 + nivel;
+            if (nivel < 3)
+                hardAta = 0 + nivel;
+            else hardAta = 3;
         }
 
     }

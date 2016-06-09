@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,27 +15,36 @@ namespace Bichos
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        
         CJ cj;
         Falas fala;
         Models models;
-        Vector2 exit;
-        
+        public Vector2 exit;
+
+        BichosCj BichosDoCj = new BichosCj();
         Combate combate = new Combate();
 
         char[,] board;
 
         int size = 64;
 
+        public int numero;
+
         int width, height;
 
-        int level = 2;
+        public int level = 2;
+
+        Random r = new Random();
+
+        public string tipo = "", tipoAdv ="", Ttipo = "", TtipoAdv = "";
+
+        char aux1;
 
         public int contador = 0;
 
-        public bool prep = false, EmCombate = false, inicio = true;
+        public bool prep = false, prep1 = false, prep2 = false, EmCombate = false, EmCombate1 = false, inicio = true, EmCura = false, UsaPc = false, aux = false, torneio = false;
 
-        Texture2D wall, pixel, inimigo1;
+        Texture2D wall, pixel, fogo, agua, pedra, erva;
         
         SpriteFont ComicSans;
         
@@ -49,7 +59,9 @@ namespace Bichos
         protected override void Initialize()
         {
             loadLevel();
-            
+            BichosDoCj.adicionaTorneio();
+            BichosDoCj.adicionaIni();
+
             base.Initialize();
         }
 
@@ -59,7 +71,7 @@ namespace Bichos
         /// </summary>
         protected override void LoadContent()
         {
-            fala = new Falas(Content, this);
+            fala = new Falas(Content, BichosDoCj ,this, cj);
             models = new Models();
 
             models.CarregaModels(Content);
@@ -68,11 +80,14 @@ namespace Bichos
 
             wall = Content.Load<Texture2D>("CrateDark_Gray");
 
-            inimigo1 = Content.Load<Texture2D>("inimigo");
-
             pixel = Content.Load<Texture2D>("Ground_Sand");
 
             ComicSans = Content.Load<SpriteFont>("ComicSansMS_20");
+
+            fogo = Content.Load<Texture2D>("fogo");
+            agua = Content.Load<Texture2D>("agua");
+            erva = Content.Load<Texture2D>("erva");
+            pedra = Content.Load<Texture2D>("pedra");
 
 
         }
@@ -91,36 +106,120 @@ namespace Bichos
 
 
 
-            if (!cj.isMoving() && !EmCombate && !inicio)
+            if (!cj.isMoving() && !EmCombate && !inicio && !EmCura && !UsaPc && !torneio)
             {
-                if (keys.IsKeyDown(Keys.Down) && cj.Position().Y != height-1)
-
+                if (keys.IsKeyDown(Keys.Down) && cj.Position().Y != height - 1)
+                {
                     movement = Vector2.UnitY;
-
+                    if (level == 4)
+                        numero = r.Next(1, 10);
+                }
 
                 else if (keys.IsKeyDown(Keys.Up) && cj.Position().Y != 0)
-
+                {
                     movement = -Vector2.UnitY;
-
+                    if (level == 4)
+                        numero = r.Next(1, 10);
+                }
 
                 else if (keys.IsKeyDown(Keys.Left) && cj.Position().X != 0)
-
+                {
                     movement = -Vector2.UnitX;
-
+                    if (level == 4)
+                        numero = r.Next(1, 10);
+                }
 
                 else if (keys.IsKeyDown(Keys.Right) && cj.Position().X != width - 1)
-
+                {
                     movement = Vector2.UnitX;
+                    if (level == 4)
+                        numero = r.Next(1, 10);
+                }
 
-
-                if (keys.IsKeyDown(Keys.E))
+                if (keys.IsKeyDown(Keys.E) && level != 4)
                 {
                     IsLevel(cj.Position() + movement);
+                    if (board[(int)cj.Position().X, (int)cj.Position().Y] == '4')
+                    {
+                        level = 4;
+                        loadLevel();
+                    }
+
                     Vector2 next = cj.Position() + movement;
 
                     if (board[(int)next.X, (int)next.Y] == 'x' )
                     {
                         EmCombate = true;
+                    }
+                    if (board[(int)next.X, (int)next.Y] == 'f')
+                    {
+                        EmCombate = true;
+                    }
+                    if (board[(int)next.X, (int)next.Y] == 'a')
+                    {
+                        EmCombate1 = true;
+                    }
+                    if (board[(int)next.X, (int)next.Y] == 'b')
+                    {
+                        EmCombate1 = true;
+                    }
+                    if (board[(int)next.X, (int)next.Y] == '$')
+                    {
+                        EmCura = true;
+                    }
+                    // Entrar no torneio
+                    if (board[(int)cj.Position().X, (int)cj.Position().Y] == '5')
+                    {
+                        torneio = true;
+                    }
+
+                    // USA PC
+                    if (board[(int)cj.Position().X, (int)cj.Position().Y] == 'p')
+                    {
+                        UsaPc = true;
+                    }
+
+                }
+
+                if (level == 4 && !prep2)
+                {
+                    if (board[(int)cj.Position().X, (int)cj.Position().Y] == 'x')
+                    {
+                        if (numero == 5)
+                        {
+                            aux1 = 'x';
+                            numero = 0;
+                            prep2 = true;
+                        }
+                        
+
+                    }
+                    else if (board[(int)cj.Position().X, (int)cj.Position().Y] == 'f')
+                    {
+                        if (numero == 5)
+                        {
+                            aux1 = 'f';
+                            numero = 0;
+                            prep2 = true;
+                        }
+                    }
+                    else if (board[(int)cj.Position().X, (int)cj.Position().Y] == 'a')
+                    {
+                        if (numero == 5)
+                        {
+                            aux1 = 'a';
+                            numero = 0;
+                            prep2 = true;
+                        }
+                    }
+                    else if (board[(int)cj.Position().X, (int)cj.Position().Y] == 'b')
+                    {
+                        if (numero == 5)
+                        {
+                            aux1 = 'b';
+                            numero = 0;
+                            prep2 = true;
+                        }
                     }
                 }
                 
@@ -130,19 +229,68 @@ namespace Bichos
             // PREPARA PARA LUTAR
             if (prep == true)
             {
-                if (!cj.isMoving() && contador < 2)
+                if (!cj.isMoving() && contador < 3)
                 {
                     movement = -Vector2.UnitX;
                     cj.Move(movement);
                     contador++;
                 }
-                else if (!cj.isMoving() && contador == 2)
+                else if (!cj.isMoving() && contador == 3)
                 {
                     movement = Vector2.UnitX;
                     cj.Move(movement);
                     prep = false;
                 }
+            }
+            if (prep1 == true)
+            {
+                if (!cj.isMoving() && contador < 3)
+                {
+                    movement = Vector2.UnitX;
+                    cj.Move(movement);
+                    contador++;
+                }
+                else if (!cj.isMoving() && contador == 3)
+                {
+                    movement = -Vector2.UnitX;
+                    cj.Move(movement);
+                    prep1 = false;
+                }
+            }
+            if (prep2)
+            {
+                aux = true;
+                if (cj.Position().X > 3)
+                {
+                    if (!cj.isMoving() && contador < 2)
+                    {
+                        movement = -Vector2.UnitX;
+                        cj.Move(movement);
+                        contador++;
+                    }
+                    else if (!cj.isMoving() && contador == 2)
+                    {
+                        movement = Vector2.UnitX;
+                        //contador = 3;
+                        prep2 = false;
+                    }
 
+                }
+                else
+                {
+                    if (!cj.isMoving() && contador < 2)
+                    {
+                        movement = Vector2.UnitX;
+                        cj.Move(movement);
+                        contador++;
+                    }
+                    else if (!cj.isMoving() && contador == 2)
+                    {
+                        movement = -Vector2.UnitX;
+                        contador = 3;
+                        prep2 = false;
+                    }
+                }
             }
 
             if (movement != Vector2.Zero)
@@ -164,7 +312,12 @@ namespace Bichos
                     for (int y = 0; y < height; y++)
                     {
                         if (board[x, y] == '0' + oldLevel)
-                            cj.position = new Vector2(x, y + 1);
+                        {
+                            if (oldLevel == 4)
+                                cj.position = new Vector2(x, y);
+                            else
+                                cj.position = new Vector2(x, y + 1);
+                        }
                     }
                 }
             }
@@ -180,6 +333,8 @@ namespace Bichos
 
             if (inicio == true)
             {
+                // DESENHAR MEDICO, MAS N DESENHA
+                spriteBatch.Draw(models.medico, new Vector2((cj.Position().X)* size, (cj.Position().Y - 1) * size), Color.White);
                 fala.Inicio(spriteBatch, ComicSans, height);
 
             }
@@ -204,20 +359,20 @@ namespace Bichos
                         case '#':
                             spriteBatch.Draw(wall, new Vector2(x * size, y * size), Color.White);
                             break;
-                        case 'x':
-                            spriteBatch.Draw(inimigo1, new Vector2(x * size, y * size), Color.White);
-                            break;
                         case 'c':
                             spriteBatch.Draw(models.casaInt, new Vector2(x * size, y * size), Color.White);
                             break;
-                        case '2':
-                            spriteBatch.Draw(models.casa, new Vector2(x * size, y * size), Color.White);
-                            break;
-                        case '3':
-                            spriteBatch.Draw(models.hosp, new Vector2(x * size, y * size), Color.White);
+                        case 'z':
+                            spriteBatch.Draw(models.jungler, new Vector2(x * size, y * size), Color.White);
                             break;
                         case 'h':
                             spriteBatch.Draw(models.hospital, new Vector2(x * size, y * size), Color.White);
+                            break;
+                        case 'm':
+                            spriteBatch.Draw(models.mundo, new Vector2(x * size, y * size), Color.White);
+                            break;
+                        case 't':
+                            spriteBatch.Draw(models.torneio, new Vector2(x * size, y * size), Color.White);
                             break;
                         default:
                             break;
@@ -226,11 +381,95 @@ namespace Bichos
             }
             cj.Draw(spriteBatch);
 
+            // DESENHAR BICHOS
+            if (tipoAdv != "")
+            {
+                if (tipoAdv == "Drake")
+                    spriteBatch.Draw(fogo, (cj.position + new Vector2(2, 0)) * 64, Color.White);
+                else if (tipoAdv == "Rosaceae")
+                    spriteBatch.Draw(erva, (cj.position + new Vector2(2, 0)) * 64, Color.White);
+                else if (tipoAdv == "Fizz")
+                    spriteBatch.Draw(agua, (cj.position - new Vector2(2, 0)) * 64, Color.White);
+                else if (tipoAdv == "Basaltes")
+                    spriteBatch.Draw(pedra, (cj.position - new Vector2(2, 0)) * 64, Color.White);
+
+                if (tipoAdv == "Rosaceae" || tipoAdv == "Drake")
+                {
+                    if (tipo == "Rosaceae")
+                        spriteBatch.Draw(erva, (cj.position + new Vector2(1, 0)) * 64, Color.White);
+                    if (tipo == "Drake")
+                        spriteBatch.Draw(fogo, (cj.position + new Vector2(1, 0)) * 64, Color.White);
+                    if (tipo == "Fizz")
+                        spriteBatch.Draw(agua, (cj.position + new Vector2(1, 0)) * 64, Color.White);
+                    if (tipo == "Basaltes")
+                        spriteBatch.Draw(pedra, (cj.position + new Vector2(1, 0)) * 64, Color.White);
+                }
+                else if (tipoAdv == "Basaltes" || tipoAdv == "Fizz")
+                {
+                    if (tipo == "Rosaceae")
+                        spriteBatch.Draw(erva, (cj.position - new Vector2(1, 0)) * 64, Color.White);
+                    if (tipo == "Drake")
+                        spriteBatch.Draw(fogo, (cj.position - new Vector2(1, 0)) * 64, Color.White);
+                    if (tipo == "Fizz")
+                        spriteBatch.Draw(agua, (cj.position - new Vector2(1, 0)) * 64, Color.White);
+                    if (tipo == "Basaltes")
+                        spriteBatch.Draw(pedra, (cj.position - new Vector2(1, 0)) * 64, Color.White);
+                }
+            }
+
+            //DESENHAR BICHOS NO TORNEIO
+            if (Ttipo != "")
+            {
+                if (TtipoAdv == "Drake")
+                    spriteBatch.Draw(fogo, (cj.position + new Vector2(5, 0)) * 64, Color.White);
+                else if (TtipoAdv == "Rosaceae")
+                    spriteBatch.Draw(erva, (cj.position + new Vector2(5, 0)) * 64, Color.White);
+                else if (TtipoAdv == "Fizz")
+                    spriteBatch.Draw(agua, (cj.position + new Vector2(5, 0)) * 64, Color.White);
+                else if (TtipoAdv == "Basaltes")
+                    spriteBatch.Draw(pedra, (cj.position + new Vector2(5, 0)) * 64, Color.White);
+
+                // cj
+                if (Ttipo == "Drake")
+                    spriteBatch.Draw(fogo, (cj.position + new Vector2(2, 0)) * 64, Color.White);
+                else if (Ttipo == "Rosaceae")
+                    spriteBatch.Draw(erva, (cj.position + new Vector2(2, 0)) * 64, Color.White);
+                else if (Ttipo == "Fizz")
+                    spriteBatch.Draw(agua, (cj.position + new Vector2(2, 0)) * 64, Color.White);
+                else if (Ttipo == "Basaltes")
+                    spriteBatch.Draw(pedra, (cj.position + new Vector2(2, 0)) * 64, Color.White);
+            }
+
+            if (aux)
+            {
+                fala.Combate(spriteBatch, ComicSans, height, aux1, cj.position, true);
+            }
+
+            if (UsaPc)
+            {
+                //enviar o oponente, o caracter X pertence ao De Erva
+                fala.NoPc(spriteBatch, ComicSans, height);
+            }
+
+            if (torneio)
+            {
+                fala.Torneio(spriteBatch, ComicSans, height);
+            }
 
             if (EmCombate)
             {
-                //enviar o oponente, o caracter X pertence ao De agua
-                fala.Combate(spriteBatch, ComicSans, height);
+                //enviar o oponente, FOGO E ERVA
+                fala.Combate(spriteBatch, ComicSans, height, board[(int)(cj.Position().X + 1), (int)(cj.Position().Y)], cj.position, false);
+            }
+            if (EmCombate1)
+            {
+                //enviar o oponente, AGUA E PEDRA
+                fala.Combate(spriteBatch, ComicSans, height, board[(int)(cj.Position().X - 1), (int)(cj.Position().Y)], cj.position, false);
+            }
+
+            if (EmCura)
+            {
+                fala.NoHospital(spriteBatch, ComicSans, height);
             }
 
             spriteBatch.End();
@@ -290,9 +529,21 @@ namespace Bichos
 
         bool Nobejetos(Vector2 pos)
         {
-            if ((board[(int)pos.X, (int)pos.Y] == '#') || (board[(int)pos.X, (int)pos.Y] == '-') || (board[(int)pos.X, (int)pos.Y] == '2') || (board[(int)pos.X, (int)pos.Y] == '3') || (board[(int)pos.X, (int)pos.Y] == 'x'))
-                return false;
-            else return true;
+            if (level != 4)
+            {
+                if ((board[(int)pos.X, (int)pos.Y] == '#')
+                    || (board[(int)pos.X, (int)pos.Y] == '-') || (board[(int)pos.X, (int)pos.Y] == '2') || (board[(int)pos.X, (int)pos.Y] == '3')
+                    || (board[(int)pos.X, (int)pos.Y] == 'x') || (board[(int)pos.X, (int)pos.Y] == '$') || (board[(int)pos.X, (int)pos.Y] == 'f')
+                    || (board[(int)pos.X, (int)pos.Y] == 'a') || (board[(int)pos.X, (int)pos.Y] == 'b') || (board[(int)pos.X, (int)pos.Y] == 'm'))
+                    return false;
+                else return true;
+            }
+            else if (level == 4)
+                if (board[(int)pos.X, (int)pos.Y] == '-')
+                    return false;
+                else return true;
+            else
+                return true;
         }
 
         void IsLevel(Vector2 vetor)
@@ -322,9 +573,10 @@ namespace Bichos
                 }
             }
         }
-        
 
-        void loadLevel()
+
+
+        public void loadLevel()
         {
             board = readLevel(@"Content\level" + level + ".sok");
             width = board.GetLength(0);
