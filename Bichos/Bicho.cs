@@ -52,6 +52,7 @@ namespace Bichos
             return heal;
         }
 
+<<<<<<< HEAD
         public int LevelAtual()
         {
             return level;
@@ -71,5 +72,7 @@ namespace Bichos
             else hardAta = 3;
         }
 
+=======
+>>>>>>> origin/master
     }
 }

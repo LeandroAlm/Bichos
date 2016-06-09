@@ -99,6 +99,7 @@ namespace Bichos
                 a = 1;
                 if (keys.IsKeyDown(Keys.NumPad1))
                 {
+<<<<<<< HEAD
                     Console.WriteLine("Chegou!!!!");
                     upper = false;
                     foreach (var bicho in BichosDoCj.bichos)
@@ -111,9 +112,16 @@ namespace Bichos
                         a++;
                     }
                     cont = 3;
+=======
+                    // defenir o bicho??
+
+                    //desenhar o bicho
+                    cont++;
+>>>>>>> origin/master
                 }
                 else if (keys.IsKeyDown(Keys.NumPad2) && BichosDoCj.bichos.Count() >= 2)
                 {
+<<<<<<< HEAD
                     upper = false;
                     foreach (var bicho in BichosDoCj.bichos)
                     {
@@ -155,16 +163,32 @@ namespace Bichos
                     cont = 3;
                 }
                 if (keys.IsKeyDown(Keys.NumPad1) && keys.IsKeyDown(Keys.NumPad2) && keys.IsKeyDown(Keys.NumPad3) && keys.IsKeyDown(Keys.NumPad4)) upper = true;
+=======
+
+                    cont++;
+                }
+                
+>>>>>>> origin/master
             }
+
+            // colocar no ponta direita o health do bicho ->> hp: BichosDoCj.bichos[atacante].VidaAtual()
+
             else if (cont == 3)
             {
                 spriteBatch.DrawString(ComicSans, "O que pretende fazer?", new Vector2(10, height * 64 + 3), Color.Black);
                 spriteBatch.DrawString(ComicSans, "1-Ataque basico", new Vector2(0 + (10), height * 64 + 25), Color.Black);
+<<<<<<< HEAD
                 if (BichosDoCj.PoderSuper(atacante) > 0)
                     spriteBatch.DrawString(ComicSans, "2-Especial", new Vector2(0 + (250), height * 64 + 25), Color.Black);
                 else
                     spriteBatch.DrawString(ComicSans, "2-Especial", new Vector2(0 + (250), height * 64 + 25), Color.Red);
                 spriteBatch.DrawString(ComicSans, "3-Defender           Vida do Rival: " + BichosDoCj.Torneio[defensor].VidaAtual(), new Vector2(0 + (400), height * 64 + 25), Color.Black);
+=======
+                //if (BichosDoCj.bichos[atacante].PoderEsp() > 0)
+                    spriteBatch.DrawString(ComicSans, "2-Especial", new Vector2(0 + (250), height * 64 + 25), Color.Black);
+                spriteBatch.DrawString(ComicSans, "3-Defender", new Vector2(0 + (400), height * 64 + 25), Color.Black);
+                spriteBatch.DrawString(ComicSans, "4-desistir", new Vector2(0 + (600), height * 64 + 25), Color.Black);
+>>>>>>> origin/master
 
                 if (keys.IsKeyDown(Keys.NumPad1) && upper)
                 {
