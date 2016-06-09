@@ -221,7 +221,7 @@ namespace Bichos
                 if (vida)
                 {
                     spriteBatch.DrawString(ComicSans, "O adversario atacou! (ENTER)    Vida do seu Bicho: " + BichosDoCj.bichos[atacante].VidaAtual(), new Vector2(10, height * 64 + 3), Color.Black);
-                    spriteBatch.DrawString(ComicSans, "1-Prosseguir       0-Sair", new Vector2(0 + (10), height * 64 + 25), Color.Black);
+                    spriteBatch.DrawString(ComicSans, "1-Prosseguir", new Vector2(0 + (10), height * 64 + 25), Color.Black);
                 }
                 if (BichosDoCj.bichos[atacante].VidaAtual() > 0)
                 {
@@ -230,18 +230,6 @@ namespace Bichos
                         vida = false;
                         upper = false;
                         cont = 3;
-                    }
-                    else if (keys.IsKeyDown(Keys.NumPad0))
-                    {
-                        game.numero = 0;
-                        game.contador = 0;
-                        vida = false;
-                        game.EmCombate = false;
-                        game.EmCombate1 = false;
-                        game.aux = false;
-                        cont = 1;
-                        BichosDoCj.Adve[defensor].ReporAdve();
-                        TipoBicho("", "");
                     }
                     if (keys.IsKeyUp(Keys.NumPad1) && keys.IsKeyUp(Keys.Enter) && (keys.IsKeyUp(Keys.NumPad0))) upper = true;
                 }

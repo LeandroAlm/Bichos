@@ -35,7 +35,6 @@ C:\Users\leand\Documents\GitHub\Bichos\Bichos\obj\x86\Debug\Bichos.exe
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\obj\x86\Debug\Bichos.pdb
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\CJ.png
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\Ground_Sand.png
-C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\inimigo.png
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\ComicSansMS_20.xnb
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\level1.sok
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\level2.sok
@@ -62,9 +61,7 @@ C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.XInput.x
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\obj\x86\Debug\Bichos.csprojResolveAssemblyReference.cache
-C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\casa.png
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\CrateDark_Gray.png
-C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\hospital.png
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\level3.sok
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\casaInt.png
 C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\hosp.png
@@ -112,3 +109,13 @@ C:\Users\leand\Desktop\Bichos\Bichos\bin\Windows\Debug\Content\jung.png
 C:\Users\leand\Desktop\Bichos\Bichos\bin\Windows\Debug\Content\infermeira.gif
 C:\Users\leand\Desktop\Bichos\Bichos\bin\Windows\Debug\Content\level5.sok
 C:\Users\leand\Desktop\Bichos\Bichos\bin\Windows\Debug\Content\ginasio.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\agua.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\erva.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\fogo.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\ginasio.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\infermeira.gif
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\jung.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\pedra.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\world.png
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\level4.sok
+C:\Users\leand\Documents\GitHub\Bichos\Bichos\bin\Windows\Debug\Content\level5.sok
